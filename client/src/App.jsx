@@ -1,15 +1,16 @@
 import React from "react";
 import Login from "./components/Login";
 import axios from "axios";
+import { Route, Routes } from "react-router-dom";
 
 axios.defaults.baseURL = "http://localhost:6969/";
 axios.defaults.withCredentials = true;
 
 function App() {
   return (
-    <>
-      <Login />
-    </>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+    </Routes>
   );
 }
 

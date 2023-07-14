@@ -9,7 +9,6 @@ router.use(
     origin: "http://localhost:5173",
   })
 );
-
-router.route("/login").get(test);
+router.route("student/login").post();
 
 module.exports = router;
