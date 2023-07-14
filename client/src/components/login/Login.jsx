@@ -3,6 +3,7 @@ import axios from "axios";
 import "./login.css"
 
 function Login() {
+  const [userType, setUserType] = useState('student')
   const [input, setInput] = useState({
     roll: "",
     password: "",
@@ -12,10 +13,13 @@ function Login() {
     axios.get("/login");
     console.log(input);
   }
+
   return (
     <>
       <div className="container-fluid">
       <div className="form">
+      <button className="btn btn-outline-primary" onClick = {()=> setUserType('teacher')}> Teacher </button> 
+      <button className="btn btn-outline-primary" onClick = {()=> setUserType('student')}> Student </button> 
 
 
                     <form className="form-control" onSubmit={handleSubmit}>
