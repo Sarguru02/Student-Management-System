@@ -3,7 +3,7 @@ import Login from "./components/login/Login";
 import axios from "axios";
 import { Route, Routes } from "react-router-dom";
 
-axios.defaults.baseURL = "http://localhost:6969/";
+axios.defaults.baseURL = "http://localhost:8080/";
 axios.defaults.withCredentials = true;
 
 function App() {

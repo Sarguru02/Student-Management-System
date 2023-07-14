@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
-const router = require("./routers/authRouter");
+const router = require("./routers/teacherLoginRouter");
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/", router);
+app.use("/teacher", router);
 
-app.listen(6969, function (req, res) {
-  console.log("Server running successfully on port 6969");
+const PORT = process.env.PORT;
+
+app.listen(PORT, function (req, res) {
+  console.log(`Server is running on port ${PORT}`);
 });
