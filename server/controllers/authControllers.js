@@ -12,17 +12,15 @@ module.exports.studentLogin = async (req, res) => {
     if (data.roll !== username || data.password !== password) {
       return res.status(401).send("Username or password is wrong");
     }
-    const newData = { ...data };
-    delete newData["password"];
     req.user = {
       userType: "student",
       isLogged: true,
-      ...newData,
+      roll: data.roll,
     };
     return res.status(200).json({
       userType: "student",
       isLogged: true,
-      ...newData,
+      roll: data.roll,
     });
   }
 };
@@ -38,17 +36,15 @@ module.exports.teacherLogin = async (req, res) => {
     if (data.name !== name || data.password !== password) {
       return res.status(401).send("Password is wrong");
     }
-    const newData = { ...data };
-    delete newData["password"];
     req.user = {
       userType: "teacher",
       isLogged: true,
-      ...newData,
+      name: data.name,
     };
     return res.status(200).json({
       userType: "teacher",
       isLogged: true,
-      ...newData,
+      name: data.name,
     });
   } else {
     res.status(401).send("User not allowed to login");
