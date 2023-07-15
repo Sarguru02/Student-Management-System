@@ -1,32 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./login.css";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Login() {
-  const [userType, setUserType] = useState("student");
   const [input, setInput] = useState({
-    roll: "",
+    username: "",
     password: "",
   });
+  const { userType, setUserType, login, currentUser } = useAuth();
+  const navigate = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(input);
-    axios
-      .post(
-        `${userType}/login`,
-        { ...input, userType },
-        {
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log("something went wrong");
-      });
+    login(input, () => navigate(`/${userType}`));
   }
 
   return (
@@ -67,10 +54,12 @@ function Login() {
                 placeholder="Username"
                 aria-label="Username"
                 aria-describedby="addon-wrapping"
-                name="roll"
+                name="username"
                 id="rollNo"
                 value={input.roll}
-                onChange={(e) => setInput({ ...input, roll: e.target.value })}
+                onChange={(e) =>
+                  setInput({ ...input, username: e.target.value })
+                }
               />
             </div>
 

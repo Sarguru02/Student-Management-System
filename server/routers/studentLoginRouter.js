@@ -1,15 +1,8 @@
 const router = require("express").Router();
-const cors = require("cors");
-const bodyParser = require("body-parser");
 const { studentLogin } = require("../controllers/authControllers");
+const bodyParser = require("body-parser");
 
 router.use(bodyParser.urlencoded({ extended: true }));
-router.use(
-  cors({
-    credentials: true,
-    origin: "http://localhost:5173",
-  })
-);
 
 router.post("/login", studentLogin);
 
