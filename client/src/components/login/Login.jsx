@@ -13,8 +13,8 @@ function Login() {
     console.log(input);
     axios
       .post(
-        "teacher/login",
-        { input },
+        `${userType}/login`,
+        { ...input, userType },
         {
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -23,6 +23,9 @@ function Login() {
       )
       .then((response) => {
         console.log(response.data);
+      })
+      .catch((error) => {
+        console.log("something went wrong");
       });
   }
 
@@ -31,14 +34,22 @@ function Login() {
       <div className="container-fluid">
         <div className="form">
           <button
-            className="btn btn-outline-primary"
+            className={
+              userType === "teacher"
+                ? "btn btn-primary"
+                : "btn btn-outline-primary"
+            }
             onClick={() => setUserType("teacher")}
           >
             {" "}
             Teacher{" "}
           </button>
           <button
-            className="btn btn-outline-primary"
+            className={
+              userType === "teacher"
+                ? "btn btn-outline-primary"
+                : "btn btn-primary"
+            }
             onClick={() => setUserType("student")}
           >
             {" "}

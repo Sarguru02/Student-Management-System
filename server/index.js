@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
-const router = require("./routers/teacherLoginRouter");
+const teacherRouter = require("./routers/teacherLoginRouter");
+const studentRouter = require("./routers/studentLoginRouter");
 
-app.use("/teacher", router);
+app.use("/teacher", teacherRouter);
+app.use("/student", studentRouter);
 
 const PORT = process.env.PORT;
 
