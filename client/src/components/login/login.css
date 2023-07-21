@@ -17,6 +17,7 @@
 }
 button {
   margin: auto;
+  margin-top: 6px;
 }
 .text-successs {
   color: rgb(192, 192, 192);
