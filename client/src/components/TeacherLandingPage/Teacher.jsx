@@ -1,40 +1,50 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./teacher.css";
-import "./teacher.js";
+import * as xlsx from "xlsx";
 
 function Teacher() {
   const [file, setFile] = useState();
-  const { currentUser } = useAuth();
+  const { currentUser, parseExcel } = useAuth();
+  const [data, setData] = useState({});
   const navigate = useNavigate();
-  const formData = new FormData();
+  const [click, setClick] = useState(0);
+  const [successMsg, setSuccessMsg] = useState("");
   useEffect(() => {
     if (!currentUser) {
       navigate("/login");
     }
   }, []);
-
   function handleSubmit(e) {
     e.preventDefault();
-    formData.append("file", file);
-    axios.post("/upload", formData);
+    parseExcel(file, (a) => {
+      console.log("value inside parse", a);
+      setData(a);
+    });
+    if (click === 2) {
+      axios
+        .post("teacher/upload", data, {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        })
+        .then(() => {
+          console.log("success");
+        });
+    }
   }
+
   return (
     <div className="container-fluid">
       <div className="form">
-        <div className="ale">
-        <div class="alert alert-success" role="alert">
-        File uploaded succesfully click here <a href="#" class="alert-link">http://localhost:5173/login</a> to head to login page
-      </div>
-        </div>
+        <div className="ale"></div>
         <form onSubmit={handleSubmit} className="form-control">
           <div className="text-success p-3">
             <h2>Upload your File</h2>
           </div>
-          <label className="inp-lab" htmlFor="marks">
-            {/* <i className=".material-symbols-outlined">Icon </i> */}
-          </label>
+          <label className="inp-lab" htmlFor="marks"></label>
 
           <input
             className="icon-input"
@@ -44,7 +54,21 @@ function Teacher() {
             accept=".xlsx"
             onChange={(e) => setFile(e.target.files[0])}
           />
-          <button type="submit" className="btn btn-outline-success" id="btun">Submit form</button>
+          <p>File: {(file && file.name) || "No file uploaded"}</p>
+          <button
+            type="submit"
+            onClick={() => {
+              setClick(() => {
+                return click + 1;
+              });
+            }}
+            className="btn btn-outline-success"
+          >
+            Submit document
+          </button>
+          {successMsg && (
+            <p className="text-success">File Uploaded Successfully!</p>
+          )}
         </form>
       </div>
     </div>
