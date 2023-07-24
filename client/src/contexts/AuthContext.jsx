@@ -79,7 +79,7 @@ export function AuthProvider({ children }) {
         const bufferArray = e.target.result;
         const workbook = xlsx.read(bufferArray, { type: "buffer" });
         const sheetNames = workbook.SheetNames;
-        var data = { bla: "hello" };
+        var data = {};
         sheetNames.forEach((sheet) => {
           const ws = xlsx.utils.sheet_to_json(workbook.Sheets[sheet]);
           if (sheet.toLowerCase() === "details") {
