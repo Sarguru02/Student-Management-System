@@ -14,8 +14,8 @@
     ],
     "rewrites": [
         {
-            "src": "/front",
-            "dest": "https://sbioa-student.vercel.app/"
+            "source": "/front",
+            "destination": "https://sbioa-student.vercel.app/"
         }
     ]
 }
