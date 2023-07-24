@@ -52,11 +52,11 @@ module.exports.uploadStudentData = async (req, res) => {
 };
 
 module.exports.test = async (req, res) => {
-  const markRef = collection(students, "12BB19", marks);
-  const snapshot = await markRef.get();
-  const data = {};
+  const markRef = collection(students, "12BB19", "marks");
+  const snapshot = await getDocs(markRef);
+  var data = [];
   snapshot.forEach((doc) => {
-    data = { ...data };
+    data.push(doc.data());
   });
-  res.json(docSnap.data());
+  res.send(data);
 };
