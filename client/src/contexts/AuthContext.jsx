@@ -60,7 +60,6 @@ export function AuthProvider({ children }) {
       .then((response) => {
         console.log(response.data);
         setCurrentUser(response.data);
-        // console.log("Current user set successfully");
         localStorage.setItem("token", JSON.stringify(response.data));
         cb(msg);
       })

@@ -12,7 +12,6 @@ module.exports.studentLogin = async (req, res) => {
   if (docSnap.exists() && userType === "student") {
     const data = docSnap.data();
     if (data.RollNo !== RollNo || data.Password !== Password) {
-      console.log(data.Password);
       return res.status(401).send("Username or password is wrong");
     }
     const signedKey = jwt.sign(

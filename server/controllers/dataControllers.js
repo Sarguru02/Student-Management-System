@@ -28,7 +28,6 @@ module.exports.getStudentData = async (req, res) => {
 };
 
 module.exports.uploadStudentData = async (req, res) => {
-  // console.log(req.body);
   const details = req.body.details;
   for (let i = 0; i < details.length; i++) {
     const docRef = doc(db, "students", details[i].RollNo);
@@ -47,9 +46,7 @@ module.exports.uploadStudentData = async (req, res) => {
       );
       delete req.body[marks[i]][j]["RollNo"];
       await setDoc(markRef, req.body[marks[i]][j]);
-      console.log(req.body[marks[i]][j]["RollNo"]);
     }
-    // console.log(marks[i], "=>", req.body[marks[i]]);
   }
   res.status(200).send("success");
 };

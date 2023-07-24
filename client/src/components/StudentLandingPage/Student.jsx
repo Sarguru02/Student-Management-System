@@ -62,6 +62,7 @@ function Student() {
         <br />
         <div className="cont2">
           {student &&
+            student.marks &&
             Object.keys(student.marks).map((key) => {
               return (
                 <div key={crypto.randomUUID()}>
