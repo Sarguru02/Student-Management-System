@@ -11,5 +11,11 @@
             "src": "/(.*)",
             "dest": "/"
         }
+    ],
+    "rewrites": [
+        {
+            "src": "/front",
+            "dest": "https://sbioa-student.vercel.app/"
+        }
     ]
 }
