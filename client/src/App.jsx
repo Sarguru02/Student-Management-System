@@ -6,8 +6,7 @@ import Teacher from "./components/TeacherLandingPage/Teacher";
 import { AuthProvider } from "./contexts/AuthContext";
 import Student from "./components/StudentLandingPage/Student";
 
-axios.defaults.baseURL = "https://student-management-system-sbioa.vercel.app/";
-axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "https://student-management-system-inky.vercel.app/";
 
 function App() {
   return (
