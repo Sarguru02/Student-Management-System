@@ -31,7 +31,7 @@ function Teacher() {
           },
         })
         .then(() => {
-          console.log("success");
+          setSuccessMsg("Success");
         });
     }
   }
@@ -74,7 +74,7 @@ function Teacher() {
             Submit document
           </button>
           {successMsg && (
-            <p className="text-success">File Uploaded Successfully!</p>
+            <p className="text-warning">File Uploaded Successfully!</p>
           )}
         </form>
       </div>
