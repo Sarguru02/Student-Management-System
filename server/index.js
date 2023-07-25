@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
     credentials: true,
-    origin: "https://sbioa-student.vercel.app/",
+    origin: "https://sbioa-student.vercel.app",
   })
 );
 
